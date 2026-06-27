@@ -42,6 +42,14 @@ Tiga model dijalankan paralel, masing-masing membaca informasi di level yang ber
 
 Seluruh pipeline dijalankan secara berurutan di Google Colab.
 
+## ⚠️ Aturan Wajib Eksekusi (Google Colab)
+
+Karena pipeline ini mengunci versi beberapa *library* spesifik (seperti ONNX dan NumPy) untuk menghindari *Environment Drift* bawaan Colab, Anda **wajib** mengikuti urutan eksekusi berikut agar tidak terjadi *error* (*crash*):
+
+1. **Jalankan Step 0 (Environment Setup):** Eksekusi *cell* pertama yang berisi skrip instalasi (`!pip install...`) dan tunggu hingga proses selesai 100%.
+2. **RESTART SESSION (Sangat Krusial):** Setelah instalasi selesai, **JANGAN** langsung menjalankan *cell* di bawahnya. Anda wajib menyegarkan memori Colab dengan cara klik menu bar di atas: **Runtime ➔ Restart session** (Mulai ulang sesi). 
+3. **Lanjutkan Pipeline:** Setelah sesi berhasil di-*restart*, abaikan/lewati Step 0 (jangan dijalankan ulang), dan langsung jalankan *cell* **Import Library** dilanjutkan dengan step-step ke bawahnya secara berurutan hingga selesai.
+
 ### Step 1 — Data Ingestion & Workspace Setup
 
 - Ekstrak dataset `.zip` dari Google Drive ke storage lokal Colab.
